@@ -1,6 +1,6 @@
 # Sealed Unions Implelmentation
 
-### ```Example```
+### ```Simple Example```
 ```dart
 class CategorieState extends Union4Impl {
   CategorieState._(
