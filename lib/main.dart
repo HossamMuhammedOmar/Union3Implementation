@@ -5,7 +5,6 @@ void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -16,10 +15,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      debugShowCheckedModeBanner: false,
+      title: 'Union',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Material App Bar'),
+          title: const Text('Sealed Union'),
         ),
         body: Center(
           child: Column(
@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        result = widgetBuilder(WeatherState.initial());
+                        result = widgetBuilder(CategorieState.initial());
                       });
                     },
                     child: const Text('Initial'),
@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        result = widgetBuilder(WeatherState.loading());
+                        result = widgetBuilder(CategorieState.loading());
                       });
                     },
                     child: const Text('Loading'),
@@ -54,11 +54,21 @@ class _MyAppState extends State<MyApp> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        result = widgetBuilder(WeatherState.loaded(55));
+                        result = widgetBuilder(CategorieState.sucess());
                       });
                     },
                     child: const Text(
-                      'Loaded',
+                      'Success',
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        result = widgetBuilder(CategorieState.error());
+                      });
+                    },
+                    child: const Text(
+                      'Error',
                     ),
                   ),
                 ],
@@ -71,10 +81,11 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-String widgetBuilder(WeatherState state) {
+String widgetBuilder(CategorieState state) {
   return state.join(
     (initial) => 'Initial State 😳',
     (loading) => 'Loading State 😃',
-    (loaded) => 'Loaded State 🥳',
+    (success) => 'Success State 🥳',
+    (error) => 'Error State 😢',
   );
 }
