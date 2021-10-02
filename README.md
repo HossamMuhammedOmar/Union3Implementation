@@ -1,7 +1,7 @@
 # Sealed Unions Implelmentation
 
-```
 
+```dart
 class CategorieState extends Union4Impl {
   CategorieState._(
       Union4<_CategorieInitial, _CategorieLoading, _CategorieSuccess,
@@ -32,6 +32,4 @@ class _CategorieLoading {}
 class _CategorieSuccess {}
 
 class _CategorieError {}
-
-
 ```
